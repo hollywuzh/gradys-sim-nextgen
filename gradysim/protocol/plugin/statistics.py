@@ -18,29 +18,7 @@ from gradysim.protocol.plugin.dispatcher import create_dispatcher, DispatchRetur
 from gradysim.protocol.interface import IProtocol
 
 
-def handle_timer_srt(protocol: IProtocol, timer: str) -> DispatchReturn:
-    """'
-    Starts collection of statistics when a timer with a name 'statistics' is scheduled 
-
-    Args:
-        protocol: Protocol for which statistics should be collected
-        timer: The name of the scheduled timer if existent
-    """
-    if timer == "statistics":
-        _statistics_protocol_wrappers[protocol].update_srt_statistic(
-            protocol.provider.current_time(), time.time()
-        )
-
-        _statistics_protocol_wrappers[protocol].update_tracked_variable_statistic(
-            protocol.provider.current_time(), protocol.provider.tracked_variables
-        )
-
-        protocol.provider.schedule_timer("statistics", protocol.provider.current_time() + 0.1)
-        
-        return DispatchReturn.INTERRUPT
-
-    else:
-        return DispatchReturn.CONTINUE
+DATA_COLLECTION_INTERVAL = 0.1
 
 
 def handle_packet_tv(protocol: IProtocol, message: str) -> DispatchReturn:
@@ -69,8 +47,9 @@ class StatisticsProtocolWrapper:
 
     _statistics_time_list: List[Dict[str, Any]]
     _statistics_tracked_variables_list: List[Dict[str, Any]]
+    _statistics_collection_interval: float
 
-    def __init__(self, protocol: IProtocol, file_name_part: str):
+    def __init__(self, protocol: IProtocol, file_name_part: str, collection_interval: float = DATA_COLLECTION_INTERVAL):
         """
         Instantiates a protocol wrapper. Should not be instantiated directly, create a statistics using the
         [create_statistics][gradysim.protocol.plugin.statistics.create_statistics] method.
@@ -86,8 +65,34 @@ class StatisticsProtocolWrapper:
         self._id = file_name_part 
         self._statistics_time_list = []
         self._statistics_tracked_variables_list = []
+        self._statistics_collection_interval = collection_interval
 
-        protocol.provider.schedule_timer("statistics", protocol.provider.current_time() + 0.1)
+        protocol.provider.schedule_timer("statistics", protocol.provider.current_time() + self._statistics_collection_interval)
+
+    def handle_timer_srt(self, protocol: IProtocol, timer: str) -> DispatchReturn:
+        """'
+        Starts collection of statistics when a timer with a name 'statistics' is scheduled 
+
+        Args:
+            protocol: Protocol for which statistics should be collected
+            timer: The name of the scheduled timer if existent
+        """
+        if timer == "statistics":
+            _statistics_protocol_wrappers[protocol].update_srt_statistic(
+                protocol.provider.current_time(), time.time()
+            )
+
+            _statistics_protocol_wrappers[protocol].update_tracked_variable_statistic(
+                protocol.provider.current_time(), protocol.provider.tracked_variables
+            )
+
+            protocol.provider.schedule_timer("statistics", protocol.provider.current_time() + self._statistics_collection_interval)
+            
+            return DispatchReturn.INTERRUPT
+
+        else:
+            return DispatchReturn.CONTINUE
+
 
     def register(self):
         """
@@ -95,7 +100,7 @@ class StatisticsProtocolWrapper:
         """
 
         # Simulation and real time
-        self._dispatcher.register_handle_timer(handle_timer_srt)
+        self._dispatcher.register_handle_timer(self.handle_timer_srt)
 
         # Tracked variables
         self._dispatcher.register_handle_packet(handle_packet_tv)
@@ -106,7 +111,7 @@ class StatisticsProtocolWrapper:
         """
 
         # Simulation and real time
-        self._dispatcher.unregister_handle_timer(handle_timer_srt)
+        self._dispatcher.unregister_handle_timer(self.handle_timer_srt)
 
         # Tracked variables
         self._dispatcher.unregister_handle_packet(handle_packet_tv)
@@ -158,7 +163,7 @@ class StatisticsProtocolWrapper:
 _statistics_protocol_wrappers: Dict[IProtocol, StatisticsProtocolWrapper] = {}
 
 
-def create_statistics(protocol: IProtocol, file_name_part: str = "") -> StatisticsProtocolWrapper:
+def create_statistics(protocol: IProtocol, file_name_part: str = "", collection_interval: float = DATA_COLLECTION_INTERVAL) -> StatisticsProtocolWrapper:
     """
     Creates statistics which wraps a protocol instance and it's methods. Implements a call chain for each of the
     protocol interface's methods. The class returned from this function can be used to add functions to the call chain
@@ -181,7 +186,7 @@ def create_statistics(protocol: IProtocol, file_name_part: str = "") -> Statisti
 
     global _statistics_protocol_wrappers
     if protocol not in _statistics_protocol_wrappers:
-        _statistics_protocol_wrappers[protocol] = StatisticsProtocolWrapper(protocol, file_name_part)
+        _statistics_protocol_wrappers[protocol] = StatisticsProtocolWrapper(protocol, file_name_part, collection_interval)
 
     _statistics_protocol_wrappers[protocol].register()
 

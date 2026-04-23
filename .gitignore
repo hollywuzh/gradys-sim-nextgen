@@ -10,3 +10,8 @@ dist/**
 .vscode/**
 
 venv/**
+
+.claude
+CLAUDE.md
+
+site/**

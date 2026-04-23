@@ -1,3 +1,4 @@
+import asyncio
 import logging
 import random
 import time
@@ -249,9 +250,14 @@ class Simulator:
 
         if self._configuration.profile:
             start_time = time.time()
+        
+        simulation_exception = None
 
-        event.callback()
-
+        try:
+            event.callback()
+        except Exception as e:
+            simulation_exception = e
+        
         if self._configuration.profile:
             self._profiling_context_total_count[event.context] = (
                     self._profiling_context_total_count.get(event.context, 0) + 1)
@@ -265,6 +271,11 @@ class Simulator:
         self._current_timestamp = event.timestamp
 
         is_done = self.is_simulation_done()
+
+        if simulation_exception is not None:
+            self._logger.error(f"Error while processing event '{event.context}': {simulation_exception}", exc_info=simulation_exception)
+            self._logger.error("Finalizing simulation due to error...")
+            is_done = True
 
         if is_done:
             self._finalize_simulation()
@@ -288,8 +299,16 @@ class Simulator:
             if next_event is not None and self._configuration.real_time and not _FORCE_FAST_EXECUTION:
                 time_until_next_event = (next_event.timestamp - (self._current_timestamp + last_step_duration))
                 sleep_duration = time_until_next_event / self._configuration.real_time
+                self._logger.debug(f"Sleeping duration: {sleep_duration}")
+                self._logger.debug(f"Next event: {next_event.context} at {timedelta(seconds=next_event.timestamp)}")
+                self._logger.debug(f"Current timestamp: {timedelta(seconds=self._current_timestamp)}")
+                self._logger.debug(f"Last step duration: {timedelta(seconds=last_step_duration)}")
                 if sleep_duration > 0:
-                    time.sleep(sleep_duration)
+                    self._logger.debug(f"Sleeping for {timedelta(seconds=sleep_duration)} until next event")
+                    # Asynchronous sleep is used here because some asynchronous coroutines might be running in the background, we can use this sleep
+                    # time to advance them.
+                    # Example: ArdupilotMobilityHandler uses asynchronous coroutines to read telemetry data from the Ardupilot SITL.
+                    asyncio.get_event_loop().run_until_complete(asyncio.sleep(sleep_duration))
 
             step_start = time.time()
             is_running = self.step_simulation()
