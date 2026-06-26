@@ -1,0 +1,27 @@
+\begin{table*}[t]
+    \centering
+    \caption{Performance comparison of QMR under baseline, network-layer attacks, and physical-layer jamming.}
+    \label{tab:qmr_attack_comparison}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.15}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{l l r r r r r r r l}
+        \toprule
+        Scenario & Attack configuration & PDR (\%) & $\Delta$PDR (pp) & E2E delay (ms) & Routing load & Throughput (Kbps) & Hop count & Collisions & Security event \\
+        \midrule
+        Baseline & None & 94.03 & 0.00 & 26.00 & 0.846 & 638.43 & 2.447 & 39 & None \\
+        Blackhole & BH@UAV5, drop prob. $=1.0$ & 82.10 & -11.94 & 25.38 & 0.969 & 684.06 & 2.359 & 28 & blackhole\_drop\_count $= 90$ \\
+        Grayhole & GH@UAV5, drop prob. $=0.5$ & 87.67 & -6.37 & 25.69 & 0.908 & 657.32 & 2.415 & 68 & grayhole\_drop\_count $= 48$ \\
+        Joint attack & BH@UAV5 + GH@UAV1, drop prob. $=1.0/0.5$ & 80.24 & -13.79 & 25.16 & 0.992 & 692.50 & 2.342 & 28 & BH drops $= 78$, GH drops $= 27$ \\
+        PHY jamming & $(122.05, 262.49, 50.62)$, $0.12$ W, $120$ m & 67.77 & -26.26 & 39.23 & 1.174 & 589.64 & 2.429 & 1547 & jamming events $= 1513$ \\
+        \bottomrule
+    \end{tabular}%
+    }
+
+    \vspace{0.4em}
+    \begin{minipage}{0.98\textwidth}
+        \footnotesize
+        Note: All experiments use the same setting: QMR + CSMA/CA + 3D Gauss-Markov mobility, seed $= 2025$, and simulation time $= 30$ s. The effective attack window is from $10$ s to $18$ s. BH denotes blackhole and GH denotes grayhole.
+    \end{minipage}
+\end{table*}

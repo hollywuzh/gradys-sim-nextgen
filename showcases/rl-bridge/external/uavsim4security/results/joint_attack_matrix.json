@@ -1,0 +1,190 @@
+{
+  "QROUTING": {
+    "0.5": {
+      "1,3": {
+        "baseline": {
+          "scenario": "qrouting_baseline_p0_5_a1-3",
+          "attacks": [],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_baseline_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_baseline_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qrouting_qrouting_baseline_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 36.89320388349515,
+            "average_end_to_end_delay_ms": 385.14513157894737,
+            "routing_load": 1.0526315789473684,
+            "average_throughput_kbps": 97.98387401045684,
+            "average_hop_count": 3.1842105263157894,
+            "collision_count": 0,
+            "average_mac_delay_ms": 67.79445297029703,
+            "security_metrics": {}
+          }
+        },
+        "ack_poison": {
+          "scenario": "qrouting_ack_poison_p0_5_a1-3",
+          "attacks": [
+            "ACK_POISON"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_ack_poison_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_ack_poison_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qrouting_qrouting_ack_poison_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 27.184466019417474,
+            "average_end_to_end_delay_ms": 401.6420714285714,
+            "routing_load": 1.4285714285714286,
+            "average_throughput_kbps": 155.94926540781674,
+            "average_hop_count": 3.5714285714285716,
+            "collision_count": 2,
+            "average_mac_delay_ms": 74.95432273838631,
+            "security_metrics": {
+              "ack_poison_count": 61,
+              "ack_poison_qrouting_count": 61
+            }
+          }
+        },
+        "grayhole": {
+          "scenario": "qrouting_grayhole_p0_5_a1-3",
+          "attacks": [
+            "GRAYHOLE"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_grayhole_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_grayhole_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qrouting_qrouting_grayhole_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 46.601941747572816,
+            "average_end_to_end_delay_ms": 160.2433125,
+            "routing_load": 0.8333333333333334,
+            "average_throughput_kbps": 305.8422782981573,
+            "average_hop_count": 3.1041666666666665,
+            "collision_count": 0,
+            "average_mac_delay_ms": 47.09138522427441,
+            "security_metrics": {
+              "grayhole_drop_count": 32
+            }
+          }
+        },
+        "ack_poison_grayhole": {
+          "scenario": "qrouting_ack_poison_grayhole_p0_5_a1-3",
+          "attacks": [
+            "ACK_POISON",
+            "GRAYHOLE"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_ack_poison_grayhole_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_qrouting_ack_poison_grayhole_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qrouting_qrouting_ack_poison_grayhole_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 39.80582524271845,
+            "average_end_to_end_delay_ms": 165.47651219512196,
+            "routing_load": 0.975609756097561,
+            "average_throughput_kbps": 300.55998507279884,
+            "average_hop_count": 2.8292682926829267,
+            "collision_count": 2,
+            "average_mac_delay_ms": 38.175954198473285,
+            "security_metrics": {
+              "ack_poison_count": 61,
+              "ack_poison_qrouting_count": 61,
+              "grayhole_drop_count": 45
+            }
+          }
+        }
+      }
+    }
+  },
+  "QMR": {
+    "0.5": {
+      "1,3": {
+        "baseline": {
+          "scenario": "qmr_baseline_p0_5_a1-3",
+          "attacks": [],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_baseline_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_baseline_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qmr_qmr_baseline_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 93.20388349514563,
+            "average_end_to_end_delay_ms": 47.586135416666664,
+            "routing_load": 0.4166666666666667,
+            "average_throughput_kbps": 506.2760502917829,
+            "average_hop_count": 2.5625,
+            "collision_count": 13,
+            "average_mac_delay_ms": 22.551999999999996,
+            "security_metrics": {}
+          }
+        },
+        "ack_poison": {
+          "scenario": "qmr_ack_poison_p0_5_a1-3",
+          "attacks": [
+            "ACK_POISON"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_ack_poison_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_ack_poison_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qmr_qmr_ack_poison_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 92.23300970873787,
+            "average_end_to_end_delay_ms": 63.750778947368424,
+            "routing_load": 0.42105263157894735,
+            "average_throughput_kbps": 434.78172479294847,
+            "average_hop_count": 2.5473684210526315,
+            "collision_count": 40,
+            "average_mac_delay_ms": 25.88140797546012,
+            "security_metrics": {
+              "ack_poison_count": 56,
+              "ack_poison_qmr_count": 56
+            }
+          }
+        },
+        "grayhole": {
+          "scenario": "qmr_grayhole_p0_5_a1-3",
+          "attacks": [
+            "GRAYHOLE"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_grayhole_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_grayhole_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qmr_qmr_grayhole_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 77.66990291262135,
+            "average_end_to_end_delay_ms": 24.666275000000002,
+            "routing_load": 0.5,
+            "average_throughput_kbps": 700.0565554220792,
+            "average_hop_count": 2.275,
+            "collision_count": 0,
+            "average_mac_delay_ms": 19.122978260869566,
+            "security_metrics": {
+              "grayhole_drop_count": 17
+            }
+          }
+        },
+        "ack_poison_grayhole": {
+          "scenario": "qmr_ack_poison_grayhole_p0_5_a1-3",
+          "attacks": [
+            "ACK_POISON",
+            "GRAYHOLE"
+          ],
+          "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_ack_poison_grayhole_p0_5_a1-3_stdout.txt",
+          "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_qmr_ack_poison_grayhole_p0_5_a1-3_stderr.txt",
+          "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qmr_qmr_ack_poison_grayhole_p0_5_a1-3.log",
+          "metrics": {
+            "generated_packets": 103,
+            "packet_delivery_ratio_percent": 71.84466019417476,
+            "average_end_to_end_delay_ms": 26.91436486486486,
+            "routing_load": 0.5405405405405406,
+            "average_throughput_kbps": 658.5396552015195,
+            "average_hop_count": 2.2432432432432434,
+            "collision_count": 20,
+            "average_mac_delay_ms": 19.421091911764705,
+            "security_metrics": {
+              "ack_poison_count": 48,
+              "ack_poison_qmr_count": 48,
+              "grayhole_drop_count": 25
+            }
+          }
+        }
+      }
+    }
+  }
+}

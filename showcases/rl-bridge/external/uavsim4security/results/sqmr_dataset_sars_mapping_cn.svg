@@ -1,0 +1,122 @@
+<svg width="1700" height="980" viewBox="0 0 1700 980" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bg { fill: #f6f1e8; }
+      .title { font: 700 36px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 18px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #4b5563; }
+      .section-title { font: 700 24px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #111827; }
+      .box-title { font: 700 22px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #111827; }
+      .box-text { font: 500 17px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #374151; }
+      .small { font: 500 15px "Microsoft YaHei", "Noto Sans SC", sans-serif; fill: #6b7280; }
+      .math { font: 700 22px "Consolas", "Microsoft YaHei", monospace; fill: #7c2d12; }
+      .state-box { fill: #dff7f3; stroke: #0f766e; stroke-width: 3; rx: 22; ry: 22; }
+      .action-box { fill: #ffedd5; stroke: #c2410c; stroke-width: 3; rx: 22; ry: 22; }
+      .reward-box { fill: #efe7ff; stroke: #7c3aed; stroke-width: 3; rx: 22; ry: 22; }
+      .next-box { fill: #dbeafe; stroke: #1d4ed8; stroke-width: 3; rx: 22; ry: 22; }
+      .meta-box { fill: #fffdf8; stroke: #a8a29e; stroke-width: 2; rx: 20; ry: 20; }
+      .arrow-state { stroke: #0f766e; stroke-width: 5; fill: none; marker-end: url(#arrowState); }
+      .arrow-action { stroke: #c2410c; stroke-width: 5; fill: none; marker-end: url(#arrowAction); }
+      .arrow-reward { stroke: #7c3aed; stroke-width: 5; fill: none; marker-end: url(#arrowReward); }
+      .arrow-next { stroke: #1d4ed8; stroke-width: 5; fill: none; marker-end: url(#arrowNext); }
+      .arrow-gray { stroke: #6b7280; stroke-width: 3.5; fill: none; marker-end: url(#arrowGray); stroke-dasharray: 8 6; }
+    </style>
+    <marker id="arrowState" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#0f766e"/>
+    </marker>
+    <marker id="arrowAction" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#c2410c"/>
+    </marker>
+    <marker id="arrowReward" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowNext" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1d4ed8"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1700" height="980"/>
+
+  <text x="850" y="70" text-anchor="middle" class="title">SQMR 训练数据表中的 S-A-R-S' 字段映射机制图</text>
+  <text x="850" y="105" text-anchor="middle" class="subtitle">说明 smoke_sqmr_dataset_transitions.csv 中哪些列对应 state、action、reward 和 next_state</text>
+
+  <rect class="meta-box" x="80" y="145" width="1540" height="120"/>
+  <text x="110" y="185" class="section-title">样本含义</text>
+  <text x="110" y="225" class="box-text">每一行表示一次单步路由决策转移样本：当前节点在状态 s 下选择动作 a，随后获得即时奖励 r，并进入下一状态 s'。</text>
+  <text x="110" y="255" class="math">(s, a, r, s')</text>
+
+  <rect class="state-box" x="90" y="320" width="480" height="490"/>
+  <text x="120" y="365" class="box-title">1. State (当前状态 s)</text>
+  <text x="120" y="405" class="box-text">对应表中所有以 s_ 开头的列：</text>
+  <text x="120" y="442" class="box-text">• s_neighbor_count</text>
+  <text x="120" y="472" class="box-text">• s_candidate_count</text>
+  <text x="120" y="502" class="box-text">• s_sub_candidate_count</text>
+  <text x="120" y="532" class="box-text">• s_required_velocity</text>
+  <text x="120" y="562" class="box-text">• s_packet_deadline_remaining_us</text>
+  <text x="120" y="592" class="box-text">• s_packet_ttl</text>
+  <text x="120" y="622" class="box-text">• s_chosen_lq / s_chosen_k_factor</text>
+  <text x="120" y="652" class="box-text">• s_chosen_q_value / s_chosen_trust_score</text>
+  <text x="120" y="682" class="box-text">• s_chosen_delay_us / s_chosen_remain_energy</text>
+  <text x="120" y="712" class="box-text">• s_chosen_actual_velocity</text>
+  <text x="120" y="742" class="box-text">• s_lq_bucket / s_delay_bucket / s_trust_bucket</text>
+  <text x="120" y="772" class="box-text">• s_energy_bucket / s_velocity_bucket</text>
+  <text x="120" y="802" class="box-text">• s_attack_indicator / s_watchdog_*_indicator</text>
+
+  <rect class="action-box" x="620" y="320" width="360" height="210"/>
+  <text x="650" y="365" class="box-title">2. Action (动作 a)</text>
+  <text x="650" y="405" class="box-text">对应表中的动作列：</text>
+  <text x="650" y="442" class="box-text">• action_next_hop_id</text>
+  <text x="650" y="472" class="box-text">• action_has_route</text>
+  <text x="650" y="505" class="box-text">本质含义：</text>
+  <text x="650" y="535" class="box-text">当前节点在候选邻居中选谁作为下一跳</text>
+
+  <rect class="reward-box" x="1040" y="320" width="280" height="210"/>
+  <text x="1070" y="365" class="box-title">3. Reward (奖励 r)</text>
+  <text x="1070" y="405" class="box-text">对应表中的：</text>
+  <text x="1070" y="442" class="box-text">• reward</text>
+  <text x="1070" y="475" class="box-text">辅助解释列：</text>
+  <text x="1070" y="505" class="box-text">• ack_status</text>
+  <text x="1070" y="535" class="box-text">• forwarding_status</text>
+
+  <rect class="next-box" x="1360" y="320" width="250" height="490"/>
+  <text x="1390" y="365" class="box-title">4. Next State (下一状态 s')</text>
+  <text x="1390" y="405" class="box-text">对应表中所有以 sp_ 开头的列：</text>
+  <text x="1390" y="442" class="box-text">• sp_neighbor_count</text>
+  <text x="1390" y="472" class="box-text">• sp_candidate_count</text>
+  <text x="1390" y="502" class="box-text">• sp_sub_candidate_count</text>
+  <text x="1390" y="532" class="box-text">• sp_required_velocity</text>
+  <text x="1390" y="562" class="box-text">• sp_packet_deadline_remaining_us</text>
+  <text x="1390" y="592" class="box-text">• sp_packet_ttl</text>
+  <text x="1390" y="622" class="box-text">• sp_chosen_lq / sp_chosen_k_factor</text>
+  <text x="1390" y="652" class="box-text">• sp_chosen_q_value / sp_chosen_trust_score</text>
+  <text x="1390" y="682" class="box-text">• sp_chosen_delay_us / sp_chosen_remain_energy</text>
+  <text x="1390" y="712" class="box-text">• sp_chosen_actual_velocity</text>
+  <text x="1390" y="742" class="box-text">• sp_lq_bucket / sp_delay_bucket / sp_trust_bucket</text>
+  <text x="1390" y="772" class="box-text">• sp_energy_bucket / sp_velocity_bucket</text>
+  <text x="1390" y="802" class="box-text">• sp_attack_indicator / sp_watchdog_*_indicator</text>
+
+  <path d="M570 565 C600 565, 600 425, 620 425" class="arrow-state"/>
+  <path d="M980 425 C1010 425, 1010 425, 1040 425" class="arrow-action"/>
+  <path d="M1320 425 C1340 425, 1340 565, 1360 565" class="arrow-reward"/>
+
+  <text x="610" y="585" class="small">根据当前状态选择下一跳</text>
+  <text x="995" y="390" class="small">动作执行后得到奖励</text>
+  <text x="1320" y="585" class="small">奖励反馈后进入下一状态</text>
+
+  <rect class="meta-box" x="620" y="590" width="700" height="220"/>
+  <text x="650" y="630" class="box-title">5. 非核心但重要的辅助字段</text>
+  <text x="650" y="668" class="box-text">这些列不直接属于 S / A / R / S' 的主体，但对训练分析和论文解释很重要：</text>
+  <text x="650" y="705" class="box-text">• protocol、seed、transition_id、packet_id、src_id、dst_id、current_node_id</text>
+  <text x="650" y="735" class="box-text">• time_us、feedback_time_us</text>
+  <text x="650" y="765" class="box-text">• max_q、q_value_after、trust_score_after</text>
+  <text x="650" y="795" class="box-text">• attack_names、attack_active、packet_attack_event_count、drop_reason、security_event</text>
+
+  <path d="M850 270 C850 295, 790 300, 790 320" class="arrow-gray"/>
+  <path d="M850 270 C850 295, 1160 300, 1160 320" class="arrow-gray"/>
+
+  <rect class="meta-box" x="90" y="850" width="1520" height="90"/>
+  <text x="120" y="890" class="box-title">6. 训练视角总结</text>
+  <text x="120" y="922" class="box-text">在训练 SQMR-DynaQ 时，可以把 s_ 开头字段作为当前状态输入，把 action_next_hop_id 作为动作，把 reward 作为即时回报，把 sp_ 开头字段作为下一状态输入；攻击字段和 watchdog 字段可作为安全约束标签或辅助监督信号。</text>
+</svg>

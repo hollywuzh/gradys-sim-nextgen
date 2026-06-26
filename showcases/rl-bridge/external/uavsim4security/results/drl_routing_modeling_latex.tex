@@ -1,0 +1,159 @@
+\subsection{基于深度强化学习的安全感知多路径路由建模}
+
+考虑一个由多架无人机构成的高动态自组网络。在每个离散时隙内，当前无人机需要联合完成下一跳集合选择与发射功率控制两个决策。为统一刻画邻居动态、外部干扰、气象因素、节点资源状态、业务需求以及历史反馈信息，本文将该问题建模为一个部分可观测马尔可夫决策过程（POMDP）。
+
+\subsubsection{状态空间}
+
+在时隙 $k$，节点的观测状态记为
+\begin{equation}
+s^{(k)}=
+\left(
+\mathcal{X}^{(k)},
+e^{(k)},
+u^{(k)},
+\eta^{(k)}
+\right),
+\end{equation}
+其中 $\mathcal{X}^{(k)}$ 表示邻居动态状态，$e^{(k)}$ 表示环境与干扰状态，$u^{(k)}$ 表示节点自身与业务状态，$\eta^{(k)}$ 表示历史反馈状态。
+
+设当前邻居集合为 $\mathcal{N}^{(k)}=\{1,2,\dots,N_k\}$，则邻居状态可表示为
+\begin{equation}
+\mathcal{X}^{(k)}=
+\left\{
+n^{(k)},
+\left(L_i^{(k)},v_i^{(k)},h_i^{(k)},f_i^{(k)}\right)_{i=1}^{N_k}
+\right\},
+\end{equation}
+其中 $n^{(k)}=N_k$ 表示当前邻居数，$L_i^{(k)}$ 表示邻居 $i$ 的三维坐标，$v_i^{(k)}$ 表示相对移动速度，$h_i^{(k)}$ 表示瞬时信道增益，$f_i^{(k)}$ 表示邻居信誉度。
+
+环境与干扰状态定义为
+\begin{equation}
+e^{(k)}=
+\left[
+\hat p_l^{(k)},\chi^{(k)},\tilde{\nu}^{(k)}
+\right],
+\end{equation}
+其中 $\hat p_l^{(k)}$ 为观测到的受干扰功率，$\chi^{(k)}$ 为降雨量，$\tilde{\nu}^{(k)}$ 为风速。
+
+节点自身与业务状态为
+\begin{equation}
+u^{(k)}=
+\left[
+b^{(k)},\varsigma^{(k)}
+\right],
+\end{equation}
+其中 $b^{(k)}$ 为剩余电量，$\varsigma^{(k)}\in\{0,1\}$ 表示业务类型，分别对应时延敏感业务和丢包敏感业务。
+
+历史反馈状态定义为
+\begin{equation}
+\eta^{(k)}=
+\left[
+\rho^{(k-1)},\tau^{(k-1)}
+\right],
+\end{equation}
+其中 $\rho^{(k-1)}$ 和 $\tau^{(k-1)}$ 分别表示上一轮端到端 packet 交付率和平均时延。
+
+\subsubsection{动作空间}
+
+在时隙 $k$，节点需要输出联合动作
+\begin{equation}
+a^{(k)}=\left(\mathcal{S}^{(k)},p^{(k)}\right),
+\end{equation}
+其中 $\mathcal{S}^{(k)}\subseteq\mathcal{N}^{(k)}$ 为下一跳集合，$p^{(k)}$ 为发射功率。
+
+考虑多路径路由，允许同时选择至多 $Z$ 个邻居，因此有
+\begin{equation}
+1\leq |\mathcal{S}^{(k)}|\leq Z.
+\end{equation}
+
+在当前邻居数为 $N_k$ 时，多路径组合数量为
+\begin{equation}
+L_1^{(k)}=\sum_{j=1}^{Z}\binom{N_k}{j}.
+\end{equation}
+
+将发射功率区间 $[P_{\min},P_{\max}]$ 离散为 $L_2$ 个等级：
+\begin{equation}
+\mathcal{P}=\{P_1,P_2,\dots,P_{L_2}\},
+\end{equation}
+其中 $P_{\min}=P_1<\cdots<P_{L_2}=P_{\max}$。
+
+因此联合动作空间为
+\begin{equation}
+\mathcal{A}^{(k)}=\mathcal{A}_{\text{route}}^{(k)}\times\mathcal{P},
+\end{equation}
+其规模为
+\begin{equation}
+|\mathcal{A}^{(k)}|=
+\left(
+\sum_{j=1}^{Z}\binom{N_k}{j}
+\right)L_2.
+\end{equation}
+
+\subsubsection{信道与环境建模}
+
+若节点以功率 $p^{(k)}$ 向邻居 $i$ 发送数据，则该链路的接收信干噪比可表示为
+\begin{equation}
+\gamma_i^{(k)}=
+\frac{p^{(k)}h_i^{(k)}}
+{N_0+\hat p_l^{(k)}},
+\end{equation}
+其中 $N_0$ 为噪声功率。链路成功传输概率进一步表示为
+\begin{equation}
+P_{\text{succ},i}^{(k)}=
+\Phi\!\left(\gamma_i^{(k)},\chi^{(k)},\tilde{\nu}^{(k)}\right),
+\end{equation}
+其中 $\Phi(\cdot)$ 刻画气象和干扰对链路可靠性的联合影响。
+
+\subsubsection{奖励函数}
+
+为综合优化交付率、时延、丢包、能耗和安全性，定义即时奖励为
+\begin{equation}
+r^{(k)}=
+w_1\rho^{(k)}
+-w_2\frac{\tau^{(k)}}{\tau_{\max}}
+-w_3\ell^{(k)}
+-w_4\frac{E^{(k)}}{E_{\max}}
+-w_5\mathcal{R}^{(k)},
+\end{equation}
+其中 $\rho^{(k)}$ 表示交付率收益，$\tau^{(k)}$ 表示时延代价，$\ell^{(k)}$ 表示丢包或重传代价，$E^{(k)}$ 表示能耗，$\mathcal{R}^{(k)}$ 表示安全风险代价。
+
+为体现业务差异，奖励权重可由业务类型自适应调整：
+\begin{equation}
+\mathbf{w}^{(k)}=\Psi(\varsigma^{(k)}).
+\end{equation}
+例如，对时延敏感业务和丢包敏感业务可分别设定不同的权重组合，从而使策略自动学习业务差异化路由行为。
+
+\subsubsection{优化目标}
+
+本文的目标是学习一个最优策略 $\pi_\theta$，使长期折扣回报最大，即
+\begin{equation}
+\max_{\pi_\theta}
+\mathbb{E}_{\pi_\theta}
+\left[
+\sum_{k=0}^{\infty}\gamma^k r^{(k)}
+\right],
+\end{equation}
+其中 $\gamma\in(0,1)$ 为折扣因子。
+
+对应的动作价值函数定义为
+\begin{equation}
+Q^\pi(s,a)=
+\mathbb{E}_{\pi}
+\left[
+\sum_{t=0}^{\infty}\gamma^t r^{(k+t)}
+\mid s^{(k)}=s,\;a^{(k)}=a
+\right].
+\end{equation}
+
+因此，最终目标为求解
+\begin{equation}
+\pi^*=\arg\max_{\pi}
+\mathbb{E}_{\pi}
+\left[
+\sum_{k=0}^{\infty}\gamma^k r^{(k)}
+\right].
+\end{equation}
+
+\subsubsection{讨论}
+
+上述建模统一刻画了邻居动态、干扰、气象、节点资源、业务需求与历史反馈等多维因素，并将多路径路由与功率控制耦合到统一的强化学习框架中。由于动作空间随邻居数增加而快速膨胀，后续求解中宜采用因子化策略、注意力机制或图神经网络编码方式，以提升训练稳定性和策略泛化能力。

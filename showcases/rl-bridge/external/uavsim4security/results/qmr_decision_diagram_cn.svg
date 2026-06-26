@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="980" viewBox="0 0 1800 980">
+  <defs>
+    <style>
+      .title { font: 700 30px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 16px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #4b5563; }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; rx: 24; }
+      .col-title { font: 700 18px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #0f172a; text-anchor: middle; }
+      .box-title { font: 700 17px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #1f2937; text-anchor: middle; }
+      .box-text { font: 500 15px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #374151; text-anchor: middle; }
+      .small { font: 500 14px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #4b5563; text-anchor: middle; }
+      .formula { font: 600 15px "Times New Roman", "Cambria Math", serif; fill: #111827; text-anchor: middle; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrowhead2); }
+      .choice { fill: #fff7ed; stroke: #f97316; stroke-width: 2; }
+      .node-a { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; rx: 18; }
+      .node-b { fill: #ecfccb; stroke: #65a30d; stroke-width: 2; rx: 18; }
+      .node-c { fill: #ede9fe; stroke: #7c3aed; stroke-width: 2; rx: 18; }
+      .node-d { fill: #fce7f3; stroke: #db2777; stroke-width: 2; rx: 18; }
+      .node-e { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 18; }
+    </style>
+    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="20" width="1760" height="940" class="panel"/>
+  <text x="900" y="68" class="title" text-anchor="middle">QMR 路由决策与 Q 值更新机制示意图</text>
+  <text x="900" y="100" class="subtitle" text-anchor="middle">对应图注：图 Y  QMR 路由决策与 Q 值更新机制示意图</text>
+
+  <text x="320" y="145" class="col-title">阶段一：候选节点筛选</text>
+  <text x="900" y="145" class="col-title">阶段二：联合指标决策</text>
+  <text x="1470" y="145" class="col-title">阶段三：ACK 反馈学习</text>
+
+  <rect x="80" y="180" width="480" height="110" class="node-a"/>
+  <text x="320" y="214" class="box-title">输入信息</text>
+  <text x="320" y="242" class="box-text">当前节点 i、目的节点 d、邻居集合 N(i)</text>
+  <text x="320" y="268" class="box-text">数据包剩余有效时间 T_deadline</text>
+
+  <line x1="320" y1="290" x2="320" y2="332" class="arrow"/>
+
+  <rect x="80" y="332" width="480" height="110" class="node-a"/>
+  <text x="320" y="367" class="box-title">计算时限推进约束</text>
+  <text x="320" y="397" class="formula">v_req = D(i,d) / T_deadline</text>
+  <text x="320" y="423" class="small">表示满足时限要求所需的最小推进速度</text>
+
+  <line x1="320" y1="442" x2="320" y2="484" class="arrow"/>
+
+  <rect x="80" y="484" width="480" height="120" class="node-b"/>
+  <text x="320" y="518" class="box-title">预测邻居未来位置</text>
+  <text x="320" y="548" class="formula">p_j(t3) = p_j(t1) + v_j (t3 - t1)</text>
+  <text x="320" y="575" class="small">基于邻居上一次 HELLO 的位置与速度信息</text>
+
+  <line x1="320" y1="604" x2="320" y2="646" class="arrow"/>
+
+  <rect x="80" y="646" width="480" height="120" class="node-b"/>
+  <text x="320" y="680" class="box-title">计算实际推进速度</text>
+  <text x="320" y="710" class="formula">v_act(i,j) = (D(i,d) - D(j_t3,d)) / delay_ij</text>
+  <text x="320" y="737" class="small">衡量将数据交给邻居 j 后的单位时间推进效果</text>
+
+  <polygon points="320,794 455,880 320,966 185,880" class="choice"/>
+  <text x="320" y="870" class="box-title">v_act ≥ v_req ?</text>
+  <text x="320" y="896" class="small">是否满足时延推进约束</text>
+
+  <line x1="455" y1="880" x2="620" y2="880" class="arrow"/>
+  <text x="535" y="862" class="small">是</text>
+  <line x1="320" y1="966" x2="320" y2="940" class="arrow"/>
+  <line x1="320" y1="940" x2="620" y2="940" class="arrow"/>
+  <text x="460" y="922" class="small">否</text>
+
+  <rect x="620" y="220" width="560" height="110" class="node-c"/>
+  <text x="900" y="254" class="box-title">候选集 C</text>
+  <text x="900" y="282" class="box-text">保留满足推进约束的候选邻居</text>
+  <text x="900" y="307" class="small">若不满足约束，则进入次级候选集作为退化备选</text>
+
+  <line x1="900" y1="330" x2="900" y2="370" class="arrow"/>
+
+  <rect x="620" y="370" width="560" height="110" class="node-c"/>
+  <text x="900" y="404" class="box-title">链路质量与距离权重</text>
+  <text x="900" y="432" class="formula">LQ_ij = d_f · d_r</text>
+  <text x="900" y="458" class="formula">m_ij = 1 - d_ij / R</text>
+
+  <line x1="900" y1="480" x2="900" y2="520" class="arrow"/>
+
+  <rect x="620" y="520" width="560" height="110" class="node-d"/>
+  <text x="900" y="554" class="box-title">构造联合决策指标</text>
+  <text x="900" y="582" class="formula">k_ij = m_ij · LQ_ij</text>
+  <text x="900" y="608" class="formula">Score_ij = k_ij · Q_ij</text>
+
+  <line x1="900" y1="630" x2="900" y2="670" class="arrow"/>
+
+  <rect x="620" y="670" width="560" height="110" class="node-d"/>
+  <text x="900" y="704" class="box-title">下一跳选择</text>
+  <text x="900" y="734" class="formula">j* = argmax Score_ij</text>
+  <text x="900" y="760" class="small">若候选集为空，则退化为选择 v_act 最大或 Q 最大邻居</text>
+
+  <line x1="1180" y1="725" x2="1320" y2="725" class="arrow"/>
+
+  <rect x="1320" y="180" width="300" height="110" class="node-e"/>
+  <text x="1470" y="214" class="box-title">发送 DATA</text>
+  <text x="1470" y="242" class="box-text">将分组发送至下一跳 j*</text>
+  <text x="1470" y="268" class="small">等待 ACK 返回</text>
+
+  <line x1="1470" y1="290" x2="1470" y2="332" class="arrow"/>
+
+  <rect x="1320" y="332" width="300" height="120" class="node-e"/>
+  <text x="1470" y="367" class="box-title">接收 ACK 反馈</text>
+  <text x="1470" y="395" class="box-text">提取 queuing delay、maxQ、</text>
+  <text x="1470" y="420" class="box-text">local minimum 与退避时间</text>
+
+  <line x1="1470" y1="452" x2="1470" y2="494" class="arrow"/>
+
+  <rect x="1240" y="494" width="460" height="140" class="node-a"/>
+  <text x="1470" y="530" class="box-title">奖励函数</text>
+  <text x="1470" y="560" class="box-text">到达目的节点：r = 10</text>
+  <text x="1470" y="586" class="box-text">惩罚：r = -10</text>
+  <text x="1470" y="612" class="formula">r = ω e^(-delay) + (1-ω) E_j / E_0</text>
+
+  <line x1="1470" y1="634" x2="1470" y2="676" class="arrow"/>
+
+  <rect x="1240" y="676" width="460" height="120" class="node-b"/>
+  <text x="1470" y="710" class="box-title">自适应学习率</text>
+  <text x="1470" y="740" class="formula">z = |d_cur - μ_d| / σ_d</text>
+  <text x="1470" y="766" class="formula">α = max(0.3, 1 - e^(-z))</text>
+
+  <line x1="1470" y1="796" x2="1470" y2="838" class="arrow"/>
+
+  <rect x="1240" y="838" width="460" height="100" class="node-d"/>
+  <text x="1470" y="872" class="box-title">Q-learning 更新</text>
+  <text x="1470" y="902" class="formula">Q_ij ← Q_ij + α (r + γ maxQ - Q_ij)</text>
+
+  <line x1="1240" y1="888" x2="1120" y2="888" class="arrow"/>
+  <line x1="1120" y1="888" x2="1120" y2="905" class="arrow"/>
+  <line x1="1120" y1="905" x2="900" y2="905" class="arrow"/>
+  <text x="1060" y="870" class="small">更新后进入下一轮转发决策</text>
+</svg>

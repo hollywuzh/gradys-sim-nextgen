@@ -1,0 +1,211 @@
+\subsection{SQMR-DynaQ: 基于信任感知 Dyna-Q 规划的安全增强路由}
+
+在当前项目中，QMR 利用时限约束、链路质量和 Q-learning 完成下一跳选择，SQMR 在此基础上进一步引入转发看门狗与邻居信任值，从而识别“返回 ACK 但不继续转发”的黑洞与灰洞节点。然而，现有 SQMR 仍主要依赖真实交互样本进行在线更新，在高动态拓扑和攻击初期样本稀疏的条件下，其路由学习收敛速度和恶意节点绕开速度仍然受限。为此，本文在 SQMR 基础上设计一种基于模型学习的安全增强型路由方法 SQMR-DynaQ，通过将真实经验写入局部环境模型，并利用规划回放机制加速负面安全经验传播，从而提升协议在攻击环境中的快速适应能力。
+
+设无人机网络节点集合为
+\begin{equation}
+\mathcal{U}=\{1,2,\dots,N\}.
+\end{equation}
+对于当前节点 $i$，其在时隙 $k$ 可观测邻居集合为
+\begin{equation}
+\mathcal{N}_i^{(k)}=\{j \mid j \text{ 位于节点 } i \text{ 通信范围内}\},
+\end{equation}
+邻居数记为 $n_i^{(k)}=|\mathcal{N}_i^{(k)}|$。单节点路由过程可建模为
+\begin{equation}
+\mathcal{M}=\langle \mathcal{S},\mathcal{A},\mathcal{P},\mathcal{R},\gamma \rangle,
+\end{equation}
+其中 $\mathcal{S}$、$\mathcal{A}$、$\mathcal{P}$、$\mathcal{R}$ 和 $\gamma$ 分别表示状态空间、动作空间、状态转移、奖励函数和折扣因子。
+
+对于任一邻居 $j \in \mathcal{N}_i^{(k)}$，定义局部特征向量为
+\begin{equation}
+\mathbf{x}_{ij}^{(k)}=
+\left[
+d_{ij}^{(k)},\;
+v_{ij}^{(k)},\;
+E_j^{(k)},\;
+LQ_{ij}^{(k)},\;
+D_{ij}^{(k)},\;
+Q_{ij}^{(k)},\;
+T_{ij}^{(k)}
+\right],
+\end{equation}
+其中 $d_{ij}^{(k)}$ 为节点 $i$ 与邻居 $j$ 的距离，$v_{ij}^{(k)}$ 为相对速度，$E_j^{(k)}$ 为剩余能量，$LQ_{ij}^{(k)}$ 为链路质量，$D_{ij}^{(k)}$ 为估计一跳时延，$Q_{ij}^{(k)}$ 为当前路由价值，$T_{ij}^{(k)}$ 为邻居信任值。进一步，引入安全观测量
+\begin{equation}
+\mathbf{z}_{ij}^{(k)}=
+\left[
+\hat a_{ij}^{(k)},\;
+c_{ij}^{(k)},\;
+u_{ij}^{(k)}
+\right],
+\end{equation}
+其中 $\hat a_{ij}^{(k)}$ 表示最近一次转发是否触发异常，$c_{ij}^{(k)}$ 和 $u_{ij}^{(k)}$ 分别表示累计成功转发确认次数和累计失效次数。
+
+考虑到邻居数动态变化，本文采用局部离散状态抽象而非全局大状态建模。对每个候选邻居构造离散状态
+\begin{equation}
+s_{ij}^{(k)}=
+\left(
+b_1(LQ_{ij}^{(k)}),
+b_2(D_{ij}^{(k)}),
+b_3(E_j^{(k)}),
+b_4(T_{ij}^{(k)}),
+b_5(\Delta d_{ij}^{(k)}),
+b_6(\hat a_{ij}^{(k)})
+\right),
+\end{equation}
+其中 $b_m(\cdot)$ 表示分桶量化函数，$\Delta d_{ij}^{(k)}$ 表示相对目的节点的推进收益。节点的总体决策状态可表示为
+\begin{equation}
+s_i^{(k)}=\left\{\left(s_{ij}^{(k)},j\right)\mid j\in\mathcal{N}_i^{(k)}\right\}.
+\end{equation}
+
+在当前项目的路由实现中，单次决策的本质是从邻居集合中选取一个下一跳，因此定义动作空间为
+\begin{equation}
+\mathcal{A}_i^{(k)}=\mathcal{N}_i^{(k)}\cup\{a_{\emptyset}\},
+\end{equation}
+其中动作 $a=j$ 表示选择邻居 $j$ 为下一跳，$a_{\emptyset}$ 表示本时隙暂不转发。
+
+为与 QMR/SQMR 的时限感知机制保持一致，首先根据数据包剩余有效时间 $T_{\mathrm{rem}}^{(k)}$ 和当前节点到目的节点距离 $D(i,d)$ 计算所需最小推进速度
+\begin{equation}
+v_{\mathrm{req}}^{(k)}=\frac{D(i,d)}{T_{\mathrm{rem}}^{(k)}}.
+\end{equation}
+基于邻居未来位置预测，可得到邻居 $j$ 的实际推进速度
+\begin{equation}
+v_{\mathrm{act}}^{(k)}(i,j)=
+\frac{D(i,d)-D(j_{t+\tau},d)}{\tau_{ij}^{(k)}},
+\end{equation}
+其中 $\tau_{ij}^{(k)}$ 为估计一跳时延。仅当
+\begin{equation}
+v_{\mathrm{act}}^{(k)}(i,j)\ge v_{\mathrm{req}}^{(k)}
+\end{equation}
+时，邻居 $j$ 才被纳入候选集合。
+
+进一步定义距离权重为
+\begin{equation}
+m_{ij}^{(k)}=1-\frac{d_{ij}^{(k)}}{R},
+\end{equation}
+其中 $R$ 为通信半径；链路质量定义为
+\begin{equation}
+LQ_{ij}^{(k)} = d_f^{(k)} d_r^{(k)},
+\end{equation}
+故综合链路权重为
+\begin{equation}
+k_{ij}^{(k)}=m_{ij}^{(k)}LQ_{ij}^{(k)}.
+\end{equation}
+为兼容 SQMR 的安全设计思想，定义动作 $a=j$ 的安全启发项为
+\begin{equation}
+H_{ij}^{(k)} = k_{ij}^{(k)} T_{ij}^{(k)}.
+\end{equation}
+将 Dyna-Q 学得的状态动作价值与安全启发项融合，可得最终决策评分
+\begin{equation}
+F_{ij}^{(k)} = H_{ij}^{(k)} Q(s_{ij}^{(k)},j).
+\end{equation}
+因此，路由选择规则为
+\begin{equation}
+a_i^{(k)}=\arg\max_{j\in\mathcal{C}_i^{(k)}} F_{ij}^{(k)}.
+\end{equation}
+
+为同时刻画交付收益、时延、能耗与安全风险，定义即时奖励为
+\begin{equation}
+r_{ij}^{(k)}=
+\lambda_1 r_{\mathrm{succ}}
+\lambda_2 r_{\mathrm{prog}}
+\lambda_3 r_{\mathrm{delay}}
+\lambda_4 r_{\mathrm{energy}}
+\lambda_5 r_{\mathrm{trust}}
+\lambda_6 r_{\mathrm{attack}},
+\end{equation}
+其中 $\sum_{m=1}^{6}\lambda_m=1$。具体而言，成功交付项定义为
+\begin{equation}
+r_{\mathrm{succ}}=
+\begin{cases}
+1, & \text{收到 ACK},\\
+-1, & \text{ACK 超时或发送失败},
+\end{cases}
+\end{equation}
+推进收益定义为
+\begin{equation}
+r_{\mathrm{prog}}=\frac{D(i,d)-D(j,d)}{R},
+\end{equation}
+时延代价定义为
+\begin{equation}
+r_{\mathrm{delay}}=-\frac{\tau_{ij}^{(k)}}{\tau_{\max}},
+\end{equation}
+能量项定义为
+\begin{equation}
+r_{\mathrm{energy}}=\frac{E_j^{(k)}}{E_{\mathrm{init}}}.
+\end{equation}
+若看门狗确认继续转发，则有
+\begin{equation}
+r_{\mathrm{trust}}=+\eta_s,
+\end{equation}
+若仅收到 ACK 而未观测到继续转发，则有
+\begin{equation}
+r_{\mathrm{trust}}=-\eta_f,\qquad \eta_f>\eta_s>0.
+\end{equation}
+攻击惩罚项可定义为
+\begin{equation}
+r_{\mathrm{attack}}=-\xi_{ij}^{(k)},
+\end{equation}
+其中
+\begin{equation}
+\xi_{ij}^{(k)}=
+\omega_1 \mathbb{I}_{\mathrm{watchdog\text{-}fail}}
+\omega_2 \mathbb{I}_{\mathrm{ack\text{-}anomaly}}
+\omega_3 (1-T_{ij}^{(k)}).
+\end{equation}
+
+节点执行动作后获得真实经验四元组
+\begin{equation}
+\big(s_i^{(k)},a_i^{(k)},r_i^{(k)},s_i^{(k+1)}\big),
+\end{equation}
+并执行 Q-learning 更新
+\begin{equation}
+Q(s_i^{(k)},a_i^{(k)}) \leftarrow
+Q(s_i^{(k)},a_i^{(k)}) +
+\alpha
+\left[
+r_i^{(k)} +
+\gamma \max_{a'} Q(s_i^{(k+1)},a') -
+Q(s_i^{(k)},a_i^{(k)})
+\right].
+\end{equation}
+
+在此基础上，将每次真实经验写入局部环境模型
+\begin{equation}
+\mathcal{M}_i[s,a]=(\hat r_{sa}, \hat s'_{sa}, \nu_{sa}),
+\end{equation}
+其中 $\nu_{sa}$ 表示访问次数或优先级。随后执行 $n_{\mathrm{plan}}$ 次规划回放。对于模型中抽样得到的状态动作对 $(\tilde s,\tilde a)$，若模型返回 $(\hat r,\tilde s')$，则有
+\begin{equation}
+Q(\tilde s,\tilde a) \leftarrow
+Q(\tilde s,\tilde a) +
+\alpha_p
+\left[
+\hat r + \gamma \max_{a'}Q(\tilde s',a') - Q(\tilde s,\tilde a)
+\right].
+\end{equation}
+
+为加快对攻击的适应，规划阶段采用安全优先采样机制。定义状态动作对的优先级为
+\begin{equation}
+\Pi(s,a)=
+\mu_1 \Delta^{-}_{\mathrm{trust}}(s,a)+
+\mu_2 \mathbb{I}_{\mathrm{watchdog\text{-}fail}}+
+\mu_3 |\delta(s,a)|,
+\end{equation}
+其中 $\Delta^{-}_{\mathrm{trust}}(s,a)$ 表示信任下降幅度，$\delta(s,a)$ 表示 TD 误差。优先级越高，越优先进入规划回放。
+
+信任值更新继续沿用 SQMR 的安全逻辑。若看门狗在观察窗口内确认继续转发，则
+\begin{equation}
+T_{ij}^{(k+1)}=
+\min(T_{\max},T_{ij}^{(k)}+\Delta_s),
+\end{equation}
+若未确认继续转发，则
+\begin{equation}
+T_{ij}^{(k+1)}=
+\max(T_{\min},T_{ij}^{(k)}-\Delta_f).
+\end{equation}
+当邻居被判定为疑似恶意时，对其价值施加额外抑制：
+\begin{equation}
+Q(s_{ij},j)\leftarrow \max(Q_{\min}, \rho Q(s_{ij},j)),
+\end{equation}
+其中 $\rho\in(0,1)$。
+
+综上，SQMR-DynaQ 的算法流程可概括为：首先通过 HELLO 报文维护邻居拓扑、链路质量、时延和信任信息；随后依据时限约束筛选候选邻居，并构造离散局部状态；接着采用安全约束下的 $\epsilon$-greedy 策略选择下一跳，完成数据发送并注册看门狗观察；然后依据 ACK 与真实继续转发证据更新信任值和即时奖励，执行一次真实样本的 Q-learning 更新；最后将经验写入环境模型，并进行多次 Dyna-Q 规划回放。该方法在保留 SQMR 安全判别能力的同时，通过模型学习显著加速攻击场景下的路由策略收敛，适合作为当前项目从 QMR 到 SQMR 再到快速安全学习路由的进一步演进方案。

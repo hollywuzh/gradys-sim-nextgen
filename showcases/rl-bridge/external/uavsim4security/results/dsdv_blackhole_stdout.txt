@@ -1,0 +1,36 @@
+Seed is:  2025
+UAV:  0  initial location is at:  (334.5357978303426, 387.21525785956106, 47.80540899034267)  speed is:  10
+UAV:  1  initial location is at:  (72.23369120844993, 301.50442162828784, 51.15862585176096)  speed is:  10
+UAV:  2  initial location is at:  (65.7832400379505, 278.50312257997103, 2.329318286542084)  speed is:  10
+UAV:  3  initial location is at:  (213.35449432814343, 107.89879923024274, 3.72462600829246)  speed is:  10
+UAV:  4  initial location is at:  (431.6149416067957, 290.3371553121491, 91.53446492021422)  speed is:  10
+UAV:  5  initial location is at:  (171.8755309301901, 223.4670098221238, 50.088735968988615)  speed is:  10
+UAV:  6  initial location is at:  (398.13574759142637, 199.51865793477623, 76.86478198337437)  speed is:  10
+UAV:  7  initial location is at:  (496.00106591190416, 348.8853478481408, 77.98021320403977)  speed is:  10
+UAV:  8  initial location is at:  (246.5125708526297, 570.8982964702697, 39.43722214987551)  speed is:  10
+UAV:  9  initial location is at:  (47.15675488471188, 216.17116873772602, 80.03040080205452)  speed is:  10
+Routing protocol: DSDV
+Simulation seed: 2025
+Security attacks: BLACKHOLE
+Security attackers: [1, 3]
+Security attack probability: 1.0
+Security attack window(us): (0, 5000000)
+At time:  0.0  s.
+At time:  0.5  s.
+At time:  1.0  s.
+At time:  1.5  s.
+At time:  2.0  s.
+At time:  2.5  s.
+At time:  3.0  s.
+At time:  3.5  s.
+At time:  4.0  s.
+At time:  4.5  s.
+Totally send:  240  data packets
+Packet delivery ratio is:  93.75 %
+Average end-to-end delay is:  51.273315555555556 ms
+Routing load is:  0.4444444444444444
+Average throughput is:  984.7881340632556 Kbps
+Average hop count is:  1.6755555555555555
+Collision num is:  20
+Average mac delay is:  4.349376262626262 ms
+Security metric [blackhole_drop_count] is:  15

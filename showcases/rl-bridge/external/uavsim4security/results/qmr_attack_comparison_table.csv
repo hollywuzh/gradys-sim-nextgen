@@ -1,0 +1,6 @@
+场景,攻击配置,PDR(%),相对基线变化(pp),E2E Delay(ms),Routing Load,Throughput(Kbps),Hop Count,Collision,安全事件
+Baseline,无攻击,94.03,0.00,26.00,0.846,638.43,2.447,39,无
+Blackhole,"BH@UAV5, drop=1.0",82.10,-11.94,25.38,0.969,684.06,2.359,28,blackhole_drop_count=90
+Grayhole,"GH@UAV5, drop=0.5",87.67,-6.37,25.69,0.908,657.32,2.415,68,grayhole_drop_count=48
+Blackhole+Grayhole,"BH@UAV5, GH@UAV1, drop=1.0/0.5",80.24,-13.79,25.16,0.992,692.50,2.342,28,"blackhole_drop_count=78; grayhole_drop_count=27"
+PHY Jamming,"(122.05,262.49,50.62), 0.12W, 120m",67.77,-26.26,39.23,1.174,589.64,2.429,1547,phy_jamming_interference_count=1513

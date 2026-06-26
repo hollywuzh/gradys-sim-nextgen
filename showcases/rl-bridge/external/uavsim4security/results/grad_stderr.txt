@@ -1,0 +1,6 @@
+C:\Users\ASUS\Desktop\项目1\UavNetSim-master (3)\extracted\UavNetSim-master\main.py:7: SyntaxWarning: invalid escape sequence '\ '
+  | | | |   __ _  __   __ | \ | |   ___  | |_  / ___|  (_)  _ __ ___
+C:\Users\ASUS\Desktop\项目1\UavNetSim-master (3)\extracted\UavNetSim-master\visualization\static_drawing.py:37: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()
+C:\Users\ASUS\Desktop\项目1\UavNetSim-master (3)\extracted\UavNetSim-master\mobility\gauss_markov_3d.py:164: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+  plt.show()

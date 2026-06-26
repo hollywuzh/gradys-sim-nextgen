@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <defs>
+    <style>
+      .title { font: 700 30px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 16px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #4b5563; }
+      .box-title { font: 700 18px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #1f2937; text-anchor: middle; }
+      .box-text { font: 500 16px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #374151; text-anchor: middle; }
+      .caption-title { font: 700 18px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #111827; }
+      .caption-text { font: 500 15px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #374151; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; rx: 24; }
+      .node-a { fill: #e0f2fe; stroke: #0ea5e9; stroke-width: 2; rx: 18; }
+      .node-b { fill: #ecfccb; stroke: #84cc16; stroke-width: 2; rx: 18; }
+      .node-c { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; rx: 18; }
+      .node-d { fill: #fce7f3; stroke: #ec4899; stroke-width: 2; rx: 18; }
+      .node-e { fill: #ede9fe; stroke: #8b5cf6; stroke-width: 2; rx: 18; }
+      .note { fill: #ffffff; stroke: #d1d5db; stroke-width: 1.5; rx: 12; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="20" width="1160" height="1460" class="panel"/>
+  <text x="600" y="68" class="title" text-anchor="middle">QMR 路由协议整体流程图</text>
+  <text x="600" y="100" class="subtitle" text-anchor="middle">对应图注：图 X  QMR 路由协议整体流程图</text>
+
+  <rect x="390" y="130" width="420" height="90" class="node-a"/>
+  <text x="600" y="165" class="box-title">初始化 QMR</text>
+  <text x="600" y="192" class="box-text">建立邻居表、初始化 Q 值、折扣因子与参数</text>
+
+  <line x1="600" y1="220" x2="600" y2="260" class="arrow"/>
+
+  <rect x="390" y="260" width="420" height="90" class="node-b"/>
+  <text x="600" y="295" class="box-title">周期广播 HELLO</text>
+  <text x="600" y="322" class="box-text">邻居发现与状态交换</text>
+
+  <line x1="600" y1="350" x2="600" y2="390" class="arrow"/>
+
+  <rect x="350" y="390" width="500" height="110" class="node-b"/>
+  <text x="600" y="426" class="box-title">接收 HELLO 并更新邻居信息</text>
+  <text x="600" y="455" class="box-text">记录位置、速度、剩余能量</text>
+  <text x="600" y="480" class="box-text">计算链路质量 LQ = d<tspan baseline-shift="sub" font-size="12">f</tspan> · d<tspan baseline-shift="sub" font-size="12">r</tspan></text>
+
+  <line x1="600" y1="500" x2="600" y2="540" class="arrow"/>
+
+  <rect x="385" y="540" width="430" height="90" class="node-c"/>
+  <text x="600" y="576" class="box-title">有数据包待转发</text>
+  <text x="600" y="603" class="box-text">进入下一跳选择流程</text>
+
+  <line x1="600" y1="630" x2="600" y2="670" class="arrow"/>
+
+  <rect x="310" y="670" width="580" height="100" class="node-c"/>
+  <text x="600" y="705" class="box-title">计算时限约束</text>
+  <text x="600" y="735" class="box-text">根据剩余有效时间得到所需推进速度 v_req</text>
+
+  <line x1="600" y1="770" x2="600" y2="810" class="arrow"/>
+
+  <rect x="290" y="810" width="620" height="110" class="node-c"/>
+  <text x="600" y="846" class="box-title">预测邻居未来位置并计算推进能力</text>
+  <text x="600" y="875" class="box-text">对每个邻居估计未来位置，计算实际推进速度 v_act</text>
+  <text x="600" y="900" class="box-text">筛选满足 v_act ≥ v_req 的候选节点</text>
+
+  <line x1="600" y1="920" x2="600" y2="960" class="arrow"/>
+
+  <rect x="280" y="960" width="640" height="110" class="node-d"/>
+  <text x="600" y="996" class="box-title">计算联合决策指标</text>
+  <text x="600" y="1025" class="box-text">距离权重 m = 1 - d / R</text>
+  <text x="600" y="1050" class="box-text">综合权重 k = m · LQ，决策值 Score = k · Q</text>
+
+  <line x1="600" y1="1070" x2="600" y2="1110" class="arrow"/>
+
+  <rect x="385" y="1110" width="430" height="90" class="node-d"/>
+  <text x="600" y="1146" class="box-title">选择下一跳</text>
+  <text x="600" y="1173" class="box-text">argmax (k · Q)</text>
+
+  <line x1="600" y1="1200" x2="600" y2="1240" class="arrow"/>
+
+  <rect x="390" y="1240" width="420" height="90" class="node-e"/>
+  <text x="600" y="1276" class="box-title">发送 DATA 并等待 ACK</text>
+  <text x="600" y="1303" class="box-text">开始一次基于反馈的在线学习</text>
+
+  <line x1="600" y1="1330" x2="600" y2="1370" class="arrow"/>
+
+  <rect x="280" y="1370" width="640" height="90" class="note"/>
+  <text x="600" y="1405" class="box-title">ACK 反馈学习</text>
+  <text x="600" y="1432" class="box-text">提取时延、maxQ、局部状态，计算奖励与学习率，更新 Q 值后进入下一轮转发</text>
+</svg>

@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE / editor settings
+.idea/
+.vscode/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Test, coverage, and cache output
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build / packaging output
+build/
+dist/
+*.egg-info/
+
+# Runtime logs and generated visualizations
+*.log
+running_log*.txt
+*.gif
+
+# Local archives and OS metadata
+*.zip
+*.rar
+*.7z
+.DS_Store
+Thumbs.db

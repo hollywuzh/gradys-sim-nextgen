@@ -1,0 +1,130 @@
+{
+  "DSDV": {
+    "protocol": "DSDV",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_dsdv.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 93.89920424403184,
+      "average_end_to_end_delay_ms": 25.038505649717514,
+      "routing_load": 0.9180790960451978,
+      "average_throughput_kbps": 1043.3409170167306,
+      "average_hop_count": 1.6454802259887005,
+      "collision_count": 40,
+      "average_mac_delay_ms": 5.7339377049180325
+    }
+  },
+  "GRAD": {
+    "protocol": "GRAD",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\grad_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\grad_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_grad.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 86.47214854111405,
+      "average_end_to_end_delay_ms": 1037.8764064417178,
+      "routing_load": 2.2776073619631902,
+      "average_throughput_kbps": 790.0958913381,
+      "average_hop_count": 1.7024539877300613,
+      "collision_count": 280,
+      "average_mac_delay_ms": NaN
+    }
+  },
+  "GREEDY": {
+    "protocol": "GREEDY",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 90.98143236074272,
+      "average_end_to_end_delay_ms": 31.0485,
+      "routing_load": 0.8746355685131195,
+      "average_throughput_kbps": 1073.8263089357347,
+      "average_hop_count": 1.587463556851312,
+      "collision_count": 40,
+      "average_mac_delay_ms": 6.603241796200345
+    }
+  },
+  "OPAR": {
+    "protocol": "OPAR",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\opar_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\opar_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_opar.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 98.40848806366049,
+      "average_end_to_end_delay_ms": 18.547378706199463,
+      "routing_load": 0.0,
+      "average_throughput_kbps": 1086.763585369632,
+      "average_hop_count": 1.6644204851752022,
+      "collision_count": 0,
+      "average_mac_delay_ms": 4.3484923201293455
+    }
+  },
+  "QGEO": {
+    "protocol": "QGEO",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qgeo_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qgeo_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qgeo.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 87.79840848806366,
+      "average_end_to_end_delay_ms": 94.38263444108762,
+      "routing_load": 0.9063444108761329,
+      "average_throughput_kbps": 627.5759594333874,
+      "average_hop_count": 2.392749244712991,
+      "collision_count": 4,
+      "average_mac_delay_ms": 41.23393564582382
+    }
+  },
+  "QROUTING": {
+    "protocol": "QROUTING",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qrouting_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qrouting.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 69.76127320954907,
+      "average_end_to_end_delay_ms": 1941.1444429657795,
+      "routing_load": 1.1406844106463878,
+      "average_throughput_kbps": 98.16909348028265,
+      "average_hop_count": 3.5019011406844105,
+      "collision_count": 74,
+      "average_mac_delay_ms": 258.0928791903858
+    }
+  },
+  "QFANET": {
+    "protocol": "QFANET",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qfanet_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qfanet_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qfanet.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 95.22546419098144,
+      "average_end_to_end_delay_ms": 40.13442339832869,
+      "routing_load": 0.8356545961002786,
+      "average_throughput_kbps": 767.9883425980594,
+      "average_hop_count": 2.2242339832869082,
+      "collision_count": 42,
+      "average_mac_delay_ms": 4.528774907749077
+    }
+  },
+  "QMR": {
+    "protocol": "QMR",
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\qmr_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_qmr.log",
+    "metrics": {
+      "generated_packets": 754,
+      "packet_delivery_ratio_percent": 94.03183023872678,
+      "average_end_to_end_delay_ms": 26.000747531734838,
+      "routing_load": 0.846262341325811,
+      "average_throughput_kbps": 638.4265176238816,
+      "average_hop_count": 2.447108603667137,
+      "collision_count": 39,
+      "average_mac_delay_ms": 8.684430352303522
+    }
+  }
+}

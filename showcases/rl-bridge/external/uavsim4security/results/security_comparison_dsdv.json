@@ -1,0 +1,65 @@
+{
+  "baseline": {
+    "scenario": "baseline",
+    "attacks": [],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_baseline_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_baseline_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_dsdv_baseline.log",
+    "metrics": {
+      "generated_packets": 240,
+      "packet_delivery_ratio_percent": 100.0,
+      "average_end_to_end_delay_ms": 49.30945833333334,
+      "routing_load": 0.4166666666666667,
+      "average_throughput_kbps": 948.8009002966736,
+      "average_hop_count": 1.7458333333333333,
+      "collision_count": 20,
+      "average_mac_delay_ms": 4.429205250596659,
+      "security_metrics": {}
+    }
+  },
+  "blackhole": {
+    "scenario": "blackhole",
+    "attacks": [
+      "BLACKHOLE"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_blackhole_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_blackhole_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_dsdv_blackhole.log",
+    "metrics": {
+      "generated_packets": 240,
+      "packet_delivery_ratio_percent": 93.75,
+      "average_end_to_end_delay_ms": 51.273315555555556,
+      "routing_load": 0.4444444444444444,
+      "average_throughput_kbps": 984.7881340632556,
+      "average_hop_count": 1.6755555555555555,
+      "collision_count": 20,
+      "average_mac_delay_ms": 4.349376262626262,
+      "security_metrics": {
+        "blackhole_drop_count": 15
+      }
+    }
+  },
+  "ack_spoof": {
+    "scenario": "ack_spoof",
+    "attacks": [
+      "ACK_SPOOF"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_ack_spoof_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\dsdv_ack_spoof_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_dsdv_ack_spoof.log",
+    "metrics": {
+      "generated_packets": 240,
+      "packet_delivery_ratio_percent": 100.0,
+      "average_end_to_end_delay_ms": 49.30945833333334,
+      "routing_load": 0.4166666666666667,
+      "average_throughput_kbps": 948.8009002966736,
+      "average_hop_count": 1.7458333333333333,
+      "collision_count": 20,
+      "average_mac_delay_ms": 4.615219570405728,
+      "security_metrics": {
+        "ack_spoof_real_ack_suppressed_count": 419,
+        "ack_spoof_success_count": 419
+      }
+    }
+  }
+}

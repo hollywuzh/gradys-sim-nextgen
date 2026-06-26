@@ -1,0 +1,10 @@
+{
+  "protocol": "SQMR",
+  "seed": 2025,
+  "sim_time_us": 2000000,
+  "attack_names": [],
+  "attackers": [],
+  "num_records": 252,
+  "num_generated_packets": 103,
+  "num_training_samples": 252
+}

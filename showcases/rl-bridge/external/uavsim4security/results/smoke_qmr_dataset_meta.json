@@ -1,0 +1,9 @@
+{
+  "protocol": "QMR",
+  "seed": 2025,
+  "sim_time_us": 2000000,
+  "attack_names": [],
+  "attackers": [],
+  "num_records": 255,
+  "num_generated_packets": 103
+}

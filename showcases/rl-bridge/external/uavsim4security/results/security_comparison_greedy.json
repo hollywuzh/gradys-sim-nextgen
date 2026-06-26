@@ -1,0 +1,129 @@
+{
+  "baseline": {
+    "scenario": "baseline",
+    "attacks": [],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_baseline_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_baseline_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_baseline.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 95.14563106796116,
+      "average_end_to_end_delay_ms": 71.58654081632652,
+      "routing_load": 0.40816326530612246,
+      "average_throughput_kbps": 956.4917100199467,
+      "average_hop_count": 1.7244897959183674,
+      "collision_count": 0,
+      "average_mac_delay_ms": 4.054169590643275,
+      "security_metrics": {}
+    }
+  },
+  "blackhole": {
+    "scenario": "blackhole",
+    "attacks": [
+      "BLACKHOLE"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_blackhole_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_blackhole_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_blackhole.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 84.46601941747572,
+      "average_end_to_end_delay_ms": 53.20150574712644,
+      "routing_load": 0.45977011494252873,
+      "average_throughput_kbps": 1016.1947919005805,
+      "average_hop_count": 1.6551724137931034,
+      "collision_count": 2,
+      "average_mac_delay_ms": 4.3862929936305735,
+      "security_metrics": {
+        "blackhole_drop_count": 13
+      }
+    }
+  },
+  "grayhole": {
+    "scenario": "grayhole",
+    "attacks": [
+      "GRAYHOLE"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_grayhole_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_grayhole_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_grayhole.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 84.46601941747572,
+      "average_end_to_end_delay_ms": 53.20150574712644,
+      "routing_load": 0.45977011494252873,
+      "average_throughput_kbps": 1016.1947919005805,
+      "average_hop_count": 1.6551724137931034,
+      "collision_count": 2,
+      "average_mac_delay_ms": 4.3862929936305735,
+      "security_metrics": {
+        "grayhole_drop_count": 13
+      }
+    }
+  },
+  "ack_spoof": {
+    "scenario": "ack_spoof",
+    "attacks": [
+      "ACK_SPOOF"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_ack_spoof_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_ack_spoof_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_ack_spoof.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 95.14563106796116,
+      "average_end_to_end_delay_ms": 71.58654081632652,
+      "routing_load": 0.40816326530612246,
+      "average_throughput_kbps": 956.4917100199467,
+      "average_hop_count": 1.7244897959183674,
+      "collision_count": 0,
+      "average_mac_delay_ms": 4.627456140350877,
+      "security_metrics": {
+        "ack_spoof_real_ack_suppressed_count": 171,
+        "ack_spoof_success_count": 171
+      }
+    }
+  },
+  "ack_poison": {
+    "scenario": "ack_poison",
+    "attacks": [
+      "ACK_POISON"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_ack_poison_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_ack_poison_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_ack_poison.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 95.14563106796116,
+      "average_end_to_end_delay_ms": 71.58654081632652,
+      "routing_load": 0.40816326530612246,
+      "average_throughput_kbps": 956.4917100199467,
+      "average_hop_count": 1.7244897959183674,
+      "collision_count": 0,
+      "average_mac_delay_ms": 4.054169590643275,
+      "security_metrics": {}
+    }
+  },
+  "location_spoof": {
+    "scenario": "location_spoof",
+    "attacks": [
+      "LOC_SPOOF"
+    ],
+    "stdout_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_location_spoof_stdout.txt",
+    "stderr_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\results\\greedy_location_spoof_stderr.txt",
+    "log_path": "C:\\Users\\ASUS\\Desktop\\\u9879\u76ee1\\UavNetSim-master (3)\\extracted\\UavNetSim-master\\running_log_greedy_location_spoof.log",
+    "metrics": {
+      "generated_packets": 103,
+      "packet_delivery_ratio_percent": 75.72815533980582,
+      "average_end_to_end_delay_ms": 73.91344871794873,
+      "routing_load": 0.5128205128205128,
+      "average_throughput_kbps": 976.7285943991915,
+      "average_hop_count": 1.705128205128205,
+      "collision_count": 0,
+      "average_mac_delay_ms": 4.424310559006211,
+      "security_metrics": {
+        "location_spoof_count": 8
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+Seed is:  2025
+UAV:  0  initial location is at:  (334.5357978303426, 387.21525785956106, 47.80540899034267)  speed is:  10
+UAV:  1  initial location is at:  (72.23369120844993, 301.50442162828784, 51.15862585176096)  speed is:  10
+UAV:  2  initial location is at:  (65.7832400379505, 278.50312257997103, 2.329318286542084)  speed is:  10
+UAV:  3  initial location is at:  (213.35449432814343, 107.89879923024274, 3.72462600829246)  speed is:  10
+UAV:  4  initial location is at:  (431.6149416067957, 290.3371553121491, 91.53446492021422)  speed is:  10
+UAV:  5  initial location is at:  (171.8755309301901, 223.4670098221238, 50.088735968988615)  speed is:  10
+UAV:  6  initial location is at:  (398.13574759142637, 199.51865793477623, 76.86478198337437)  speed is:  10
+UAV:  7  initial location is at:  (496.00106591190416, 348.8853478481408, 77.98021320403977)  speed is:  10
+UAV:  8  initial location is at:  (246.5125708526297, 570.8982964702697, 39.43722214987551)  speed is:  10
+UAV:  9  initial location is at:  (47.15675488471188, 216.17116873772602, 80.03040080205452)  speed is:  10
+Routing protocol: GREEDY
+Simulation seed: 2025
+Security attacks: NONE
+At time:  0.0  s.
+At time:  0.5  s.
+At time:  1.0  s.
+At time:  1.5  s.
+Totally send:  103  data packets
+Packet delivery ratio is:  95.14563106796116 %
+Average end-to-end delay is:  71.58654081632652 ms
+Routing load is:  0.40816326530612246
+Average throughput is:  956.4917100199467 Kbps
+Average hop count is:  1.7244897959183674
+Collision num is:  0
+Average mac delay is:  4.054169590643275 ms

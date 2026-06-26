@@ -1,5 +1,6 @@
 build/**
 .idea/**
+.DS_Store
 
 **.egg-info/**
 
@@ -15,3 +16,6 @@ venv/**
 CLAUDE.md
 
 site/**
+
+showcases/rl-bridge/outputs/uavsim4security_smoke/**
+showcases/rl-bridge/external/*.zip

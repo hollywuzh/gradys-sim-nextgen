@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1160" viewBox="0 0 1800 1160">
+  <defs>
+    <style>
+      .title { font: 700 32px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #1f2937; }
+      .subtitle { font: 500 16px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #4b5563; }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; rx: 24; }
+      .boxa { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2; rx: 18; }
+      .boxb { fill: #ecfccb; stroke: #65a30d; stroke-width: 2; rx: 18; }
+      .boxc { fill: #fef3c7; stroke: #d97706; stroke-width: 2; rx: 18; }
+      .boxd { fill: #ede9fe; stroke: #7c3aed; stroke-width: 2; rx: 18; }
+      .boxe { fill: #fce7f3; stroke: #db2777; stroke-width: 2; rx: 18; }
+      .head { font: 700 18px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #111827; text-anchor: middle; }
+      .text { font: 500 15px "Microsoft YaHei", "PingFang SC", sans-serif; fill: #374151; text-anchor: middle; }
+      .formula { font: 600 15px "Times New Roman", "Cambria Math", serif; fill: #111827; text-anchor: middle; }
+      .arrow { stroke: #475569; stroke-width: 3; fill: none; marker-end: url(#arrow2); }
+    </style>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <rect x="20" y="20" width="1760" height="1120" class="panel"/>
+  <text x="900" y="70" class="title" text-anchor="middle">基于深度强化学习的安全感知多路径路由状态-动作-奖励机制图</text>
+  <text x="900" y="102" class="subtitle" text-anchor="middle">对应 Mermaid 文件：drl_routing_sar_mechanism.md</text>
+
+  <rect x="90" y="170" width="360" height="86" class="boxa"/>
+  <text x="270" y="206" class="head">状态空间 s(k)</text>
+  <text x="270" y="234" class="text">统一描述当前时隙的局部观测状态</text>
+
+  <rect x="80" y="320" width="380" height="136" class="boxa"/>
+  <text x="270" y="356" class="head">邻居动态状态</text>
+  <text x="270" y="384" class="text">邻居数 n</text>
+  <text x="270" y="410" class="text">{L_i, v_i, h_i, f_i}<tspan baseline-shift="sub" font-size="12">i=1..N</tspan></text>
+  <text x="270" y="436" class="text">位置、相对速度、信道增益、信誉度</text>
+
+  <rect x="80" y="500" width="380" height="120" class="boxa"/>
+  <text x="270" y="536" class="head">环境与干扰状态</text>
+  <text x="270" y="564" class="text">p̂_l、χ、ν̃</text>
+  <text x="270" y="590" class="text">受干扰功率、降雨量、风速</text>
+
+  <rect x="80" y="664" width="380" height="112" class="boxa"/>
+  <text x="270" y="700" class="head">自身与业务状态</text>
+  <text x="270" y="728" class="text">b、ς</text>
+  <text x="270" y="754" class="text">剩余电量、时延敏感/丢包敏感业务</text>
+
+  <rect x="80" y="820" width="380" height="104" class="boxa"/>
+  <text x="270" y="856" class="head">历史反馈状态</text>
+  <text x="270" y="884" class="text">ρ、τ</text>
+  <text x="270" y="910" class="text">上一轮交付率与平均时延</text>
+
+  <line x1="460" y1="388" x2="610" y2="388" class="arrow"/>
+  <line x1="460" y1="560" x2="610" y2="560" class="arrow"/>
+  <line x1="460" y1="720" x2="610" y2="720" class="arrow"/>
+  <line x1="460" y1="872" x2="610" y2="872" class="arrow"/>
+
+  <rect x="610" y="360" width="320" height="160" class="boxb"/>
+  <text x="770" y="396" class="head">状态编码器</text>
+  <text x="770" y="426" class="text">局部邻居编码</text>
+  <text x="770" y="452" class="text">+ 全局环境融合</text>
+  <text x="770" y="478" class="text">Attention / GNN / MLP</text>
+
+  <line x1="770" y1="520" x2="770" y2="584" class="arrow"/>
+
+  <rect x="620" y="584" width="300" height="100" class="boxb"/>
+  <text x="770" y="620" class="head">联合策略网络</text>
+  <text x="770" y="648" class="text">输出路由动作与功率动作</text>
+
+  <line x1="920" y1="634" x2="1080" y2="634" class="arrow"/>
+
+  <rect x="1080" y="180" width="300" height="86" class="boxc"/>
+  <text x="1230" y="216" class="head">动作空间 a(k)</text>
+  <text x="1230" y="244" class="text">联合决策：路由 + 功率</text>
+
+  <rect x="1030" y="340" width="400" height="142" class="boxc"/>
+  <text x="1230" y="376" class="head">路由动作</text>
+  <text x="1230" y="404" class="text">选择下一跳集合 S(k)</text>
+  <text x="1230" y="430" class="formula">1 ≤ |S(k)| ≤ Z</text>
+  <text x="1230" y="456" class="text">多路径并行转发</text>
+
+  <rect x="1030" y="546" width="400" height="132" class="boxc"/>
+  <text x="1230" y="582" class="head">功率动作</text>
+  <text x="1230" y="610" class="text">选择离散发射功率等级</text>
+  <text x="1230" y="636" class="formula">p(k) ∈ {P1, …, P<tspan baseline-shift="sub" font-size="12">L2</tspan>}</text>
+  <text x="1230" y="662" class="text">控制干扰、可靠性与能耗</text>
+
+  <line x1="1380" y1="224" x2="1530" y2="224" class="arrow"/>
+  <line x1="1430" y1="412" x2="1530" y2="412" class="arrow"/>
+  <line x1="1430" y1="612" x2="1530" y2="612" class="arrow"/>
+
+  <rect x="1530" y="150" width="220" height="120" class="boxd"/>
+  <text x="1640" y="186" class="head">环境交互结果</text>
+  <text x="1640" y="214" class="text">动作执行后</text>
+  <text x="1640" y="240" class="text">产生链路与业务反馈</text>
+
+  <rect x="1490" y="340" width="300" height="102" class="boxd"/>
+  <text x="1640" y="376" class="head">交付效果</text>
+  <text x="1640" y="404" class="text">成功率 / 丢包 / 重传</text>
+
+  <rect x="1490" y="486" width="300" height="102" class="boxd"/>
+  <text x="1640" y="522" class="head">时延效果</text>
+  <text x="1640" y="550" class="text">一跳 / 端到端时延</text>
+
+  <rect x="1490" y="632" width="300" height="102" class="boxd"/>
+  <text x="1640" y="668" class="head">能耗效果</text>
+  <text x="1640" y="696" class="text">发射功率带来的能量消耗</text>
+
+  <rect x="1490" y="778" width="300" height="102" class="boxd"/>
+  <text x="1640" y="814" class="head">安全风险</text>
+  <text x="1640" y="842" class="text">低信誉邻居 / 干扰 / 攻击暴露</text>
+
+  <line x1="1640" y1="880" x2="1640" y2="934" class="arrow"/>
+
+  <rect x="1310" y="934" width="480" height="122" class="boxe"/>
+  <text x="1550" y="970" class="head">奖励函数 r(k)</text>
+  <text x="1550" y="1000" class="formula">r = w1·ρ - w2·τ - w3·loss - w4·energy - w5·risk</text>
+  <text x="1550" y="1028" class="text">根据业务类型动态调整权重，实现多目标联合优化</text>
+
+  <line x1="1310" y1="995" x2="1090" y2="995" class="arrow"/>
+
+  <rect x="760" y="934" width="420" height="122" class="boxe"/>
+  <text x="970" y="970" class="head">策略优化目标</text>
+  <text x="970" y="1000" class="formula">max E[Σ γ^k r(k)]</text>
+  <text x="970" y="1028" class="text">学习兼顾可靠性、时延、能耗与安全性的最优策略</text>
+</svg>
