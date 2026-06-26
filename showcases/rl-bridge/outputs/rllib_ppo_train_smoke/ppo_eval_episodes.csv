@@ -1,0 +1,3 @@
+policy,episode,seed,steps,total_reward,generated_tasks,hits,misses,pending_tasks,success_rate,miss_rate,total_energy_used,mean_pending_tasks,max_pending_tasks
+rllib-ppo,0,1007,11,15.296,14.0,2.0,0.0,12.0,1.0,0.0,194.3999999999999,7.363636363636363,12.0
+rllib-ppo,1,1008,11,17.240000000000006,6.0,2.0,0.0,4.0,1.0,0.0,167.9999999999999,2.727272727272727,4.0

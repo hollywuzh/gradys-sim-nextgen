@@ -1,0 +1,34 @@
+{
+  "ray_version": "2.49.2",
+  "env_name": "gradys_uav_service_rllib",
+  "policy_id": "shared_uav_policy",
+  "env_config": {
+    "num_uavs": 2,
+    "num_devices": 8,
+    "episode_duration": 12.0,
+    "control_interval": 1.0,
+    "candidate_limit": 3,
+    "task_arrival_probability": 0.08,
+    "seed": 7
+  },
+  "ppo_config": {
+    "api_stack": "legacy",
+    "train_batch_size": 64,
+    "minibatch_size": 32,
+    "num_epochs": 1,
+    "rollout_fragment_length": 16,
+    "iterations": 1
+  },
+  "results": [
+    {
+      "iteration": 0,
+      "episode_reward_mean": 4.437333333333335,
+      "episode_len_mean": 11.0,
+      "num_episodes": 6,
+      "num_env_steps_sampled_lifetime": 66,
+      "timesteps_total": 66,
+      "training_iteration": 1,
+      "time_total_s": 1.4495899677276611
+    }
+  ]
+}

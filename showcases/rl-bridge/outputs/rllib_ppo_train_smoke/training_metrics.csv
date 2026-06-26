@@ -1,0 +1,2 @@
+iteration,episode_reward_mean,episode_reward_min,episode_reward_max,episode_len_mean,num_episodes,num_env_steps_sampled_lifetime,timesteps_total,training_iteration,time_total_s
+0,2.7746666666666684,-4.087999999999998,6.256000000000002,11.0,6,66,66,1,0.38376307487487793

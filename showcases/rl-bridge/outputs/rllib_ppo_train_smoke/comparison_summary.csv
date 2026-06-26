@@ -1,0 +1,4 @@
+policy,episodes,avg_reward,avg_success_rate,avg_miss_rate,avg_hits,avg_misses,avg_energy,avg_mean_pending,avg_max_pending
+random,2.0,6.104000000000002,1.0,0.0,1.0,0.0,177.5999999999998,5.590909090909091,9.0
+nearest,2.0,16.148000000000003,1.0,0.0,2.0,0.0,187.19999999999987,5.181818181818182,8.0
+rllib-ppo,2.0,16.268,1.0,0.0,2.0,0.0,181.19999999999987,5.045454545454545,8.0

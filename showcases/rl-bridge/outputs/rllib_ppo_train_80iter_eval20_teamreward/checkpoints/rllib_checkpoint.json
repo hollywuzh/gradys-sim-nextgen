@@ -1,0 +1,1 @@
+{"type": "Algorithm", "checkpoint_version": "1.1", "format": "cloudpickle", "state_file": "/Users/wupengfei/Documents/Framework4test/gradys-sim-nextgen/showcases/rl-bridge/outputs/rllib_ppo_train_80iter_eval20_teamreward/checkpoints/algorithm_state.pkl", "policy_ids": ["shared_uav_policy"], "ray_version": "2.49.2", "ray_commit": "479fa716904109d9df4b56b98ca3c3350e1ec13c"}

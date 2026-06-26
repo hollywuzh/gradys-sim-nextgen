@@ -1,0 +1,20 @@
+{
+  "ray_version": "2.49.2",
+  "env_name": "gradys_uav_service_rllib_train",
+  "policy_id": "shared_uav_policy",
+  "checkpoint": null,
+  "training": [
+    {
+      "iteration": 0,
+      "episode_reward_mean": 2.7746666666666684,
+      "episode_reward_min": -4.087999999999998,
+      "episode_reward_max": 6.256000000000002,
+      "episode_len_mean": 11.0,
+      "num_episodes": 6,
+      "num_env_steps_sampled_lifetime": 66,
+      "timesteps_total": 66,
+      "training_iteration": 1,
+      "time_total_s": 0.38376307487487793
+    }
+  ]
+}
